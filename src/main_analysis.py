@@ -209,7 +209,7 @@ def auto_run_subject():
     # ------------------------------------------------------
     # [USER SETTINGS] - Configure here
     # ------------------------------------------------------
-    TARGET_ID = 'S04'       # Example: 'S04', 'S09'
+    TARGET_ID = 'S99'       # Example: 'S00', 'S99'
     GROUP_TYPE = 'Sham'     # 'Real' or 'Sham'
     DATA_FOLDER = 'Data'    # Folder containing CSVs
     # ------------------------------------------------------
@@ -240,4 +240,5 @@ def auto_run_subject():
     analyzer.run_analysis()
 
 if __name__ == "__main__":
+
     auto_run_subject()
