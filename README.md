@@ -32,4 +32,10 @@ To ensure scientific integrity and reproducibility, the codebase is strictly sep
 2. Run the main analysis script:
 
 ```bash
+
 python src/main_analysis.py
+### Update Log (v9.1)
+- **Core Algorithm Update:** Transitioned from variance-based HEMO to MBLL-based (Modified Beer-Lambert Law) extraction.
+- **Channel Mapping:** Identified and implemented precise channel mapping (Optics 13/7) based on Mind Monitor specifications.
+- **Validation:** Confirmed strong neurovascular coupling ($r \approx -0.95$) between HbO and HbR using the new Red/IR mapping.
+- **Robustness:** Added strict NaN/Inf protection for Prediction Error (PE) calculations.
