@@ -1,41 +1,37 @@
-# SAIM Validation Analysis Framework (Protocol v3.4)
+# SAIM Analysis Engine v9.2
 
-This repository contains the source code for the physiological data analysis used in the study **"Validation of the Spinal Active Inference Model (SAIM): A Neuro-Somatic Approach to Entropy Minimization"**.
+**Scientific Release: Bilateral Fusion & Adaptive Reliability Gating**
 
-The analysis framework is designed to process multi-modal physiological signals (EEG, Accelerometer, PPG) to compute the **Free Energy Index (FSI)**, **Neural Complexity Index (NCI)**, and **Hemodynamic Synchronization (HEMO)**.
+## Overview
+This repository contains the source code for the **Spinal Active Inference Model (SAIM) Analysis Engine v9.2**. This computational framework is designed to quantify the transition from "Central Prediction Error Neglect" (Functional Spinal Fixation) to "Active Inference" (Plasticity) following Specific Input Perturbation (SIP).
 
-## 📂 Repository Structure
+## Key Features (v9.2)
+* **Bilateral Hemodynamic Tracking:** Utilizes **Modified Beer-Lambert Law (MBLL)** on both Left and Right Inner optical sensors to estimate prefrontal Oxyhemoglobin ($\Delta [HbO_2]$) volatility.
+* **Adaptive Reliability Gating (ARG):** Dynamically weights signal contributions based on real-time signal-to-noise ratio, ensuring robustness against sensor dropout.
+* **Neuro-Somatic Integration:** Computes the **Neural Complexity Index (NCI)** by integrating Hemodynamics (HEMO), Neural Precision (FSI), Somatic Order (SOM), and Autonomic Complexity (AUT).
 
-To ensure scientific integrity and reproducibility, the codebase is strictly separated into **invariant mathematical logic** and **protocol-specific execution flow**:
+## Hardware Compatibility
+* **Device:** Interaxon Muse S (Gen 2 / Athena)
+* **Sensor Configuration:**
+    * **Left Inner:** Red (Ch13) / IR (Ch7)
+    * **Right Inner:** Red (Ch14) / IR (Ch8)
+    * **Outer Sensors:** Excluded to minimize hair-induced artifacts.
 
-* **`src/core_metrics.py`** (Invariant)
-  * Contains the core mathematical algorithms for entropy calculation, band-pass filtering, and synchronization metrics.
-  * **Note:** The mathematical definitions in this module have remained **consistent throughout Phase 1 and Phase 2b**, ensuring no p-hacking or algorithmic alteration occurred during the study.
+## File Structure
+* `SAIM_Engine_v9_2.py`: The core analysis pipeline (matches Supplementary Material S2).
+* `SAIM_code_supplymentary1_v9_2.pdf`: Theoretical Methodology (S1).
+* `SAIM_code_supplymentary2_v9_2.pdf`: Source Code Documentation (S2).
 
-* **`src/main_analysis.py`** (Updated to v3.4)
-  * Handles data loading, windowing, and batch processing.
-  * This module was updated to **Version 3.4** solely to accommodate the expanded experimental design (e.g., the 6-phase sequence in the Sham group including the Rescue phase), while calling the immutable functions from `core_metrics.py`.
+## Usage
+1.  Place raw CSV files from Mind Monitor in the data directory.
+2.  Configure `TARGET_ID` and `GROUP_TYPE` in the launcher script.
+3.  Run the analysis:
+    ```bash
+    python SAIM_Engine_v9_2.py
+    ```
 
-## ⚙️ Requirements
+## Citation & Theory
+For the mathematical derivation of the HEMO index and NCI integration logic, please refer to **Supplementary Material S1** included in this repository.
 
-* Python 3.8+
-* Dependencies:
-  * `numpy`
-  * `pandas`
-  * `scipy`
-  * `matplotlib`
-  * `seaborn`
-
-## 🚀 Usage
-
-1. Place your raw CSV data in a `Data` folder.
-2. Run the main analysis script:
-
-```bash
-
-python src/main_analysis.py
-### Update Log (v9.1)
-- **Core Algorithm Update:** Transitioned from variance-based HEMO to MBLL-based (Modified Beer-Lambert Law) extraction.
-- **Channel Mapping:** Identified and implemented precise channel mapping (Optics 13/7) based on Mind Monitor specifications.
-- **Validation:** Confirmed strong neurovascular coupling ($r \approx -0.95$) between HbO and HbR using the new Red/IR mapping.
-- **Robustness:** Added strict NaN/Inf protection for Prediction Error (PE) calculations.
+---
+*© 2025 TIC-DO Institute of Vertebral Subluxation Research*
