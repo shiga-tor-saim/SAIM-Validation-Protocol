@@ -395,7 +395,7 @@ class SAIMAnalyzer:
 def auto_run_subject():
     # [USER SETTINGS] -------------------------
     # Change these variables to match your file naming convention
-    TARGET_ID = 'S09'
+    TARGET_ID = 'S99'
     GROUP_TYPE = 'Real' # 'Real' or 'Sham'
     DATA_FOLDER = '/content/' # Default Colab path
     # -----------------------------------------
@@ -404,7 +404,7 @@ def auto_run_subject():
     files = {}
     
     # Auto-mapping files based on ID and suffixes
-    # Assumes files are named like "S09_Real_01_Pre.csv"
+    # Assumes files are named like "S99_Real_01_Pre.csv"
     phases = {
         '01_Pre': '01_Pre', 
         '02_PostImmed': '02_PostImmed',
@@ -436,4 +436,5 @@ def auto_run_subject():
     analyzer.run_analysis()
 
 if __name__ == "__main__":
+
     auto_run_subject()
