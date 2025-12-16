@@ -1,37 +1,53 @@
-# SAIM Analysis Engine v9.2
+# SAIM Engine v9.3: Spinal Active Inference Model Analysis Pipeline
 
-**Scientific Release: Bilateral Fusion & Adaptive Reliability Gating**
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Status](https://img.shields.io/badge/Status-Gold%20Master-green.svg)]()
 
-## Overview
-This repository contains the source code for the **Spinal Active Inference Model (SAIM) Analysis Engine v9.2**. This computational framework is designed to quantify the transition from "Central Prediction Error Neglect" (Functional Spinal Fixation) to "Active Inference" (Plasticity).
+**Official Implementation for Manuscript Submission.**
 
-## Key Features (v9.2 Final)
-* **Bilateral Hemodynamic Tracking:** Utilizes **Modified Beer-Lambert Law (MBLL)** on both Left/Right Inner sensors (Ch13/7, Ch14/8) to estimate prefrontal Oxyhemoglobin ($\Delta [HbO_2]$).
-* **Adaptive Reliability Gating (ARG):** Dynamically weights signal contributions based on real-time signal-to-noise ratio.
-* **NCI Volatility (Criticality):** Computes the rolling volatility of the Neural Complexity Index (NCI) to detect phase transitions (Self-Organized Criticality).
+## 📖 Overview
 
-## Hardware Compatibility
-* **Device:** Interaxon Muse S (Gen 2 / Athena)
-* **Sensor Configuration:**
-    * **Left Inner:** Red (Ch13) / IR (Ch7)
-    * **Right Inner:** Red (Ch14) / IR (Ch8)
-    * **Outer Sensors:** Excluded to minimize hair-induced artifacts.
+The **Spinal Active Inference Model (SAIM) Engine v9.3** is a computational pipeline designed to quantify neuro-somatic reorganization following chiropractic adjustments. Based on the Free Energy Principle (Friston, 2010), it integrates multi-modal physiological signals into a unified state space to evaluate the dynamics of "Destruction and Reorganization."
 
-## File Structure
-* `SAIM_Engine_v9_2.py`: The core analysis pipeline (Full Python Source).
-* `SAIM_code_supplymentary1_v9_2.pdf`: Theoretical Methodology (S1).
-* `SAIM_code_supplymentary2_v9_2.pdf`: Source Code Documentation (S2).
-
-## Usage
-1.  Place raw CSV files from Mind Monitor in the data directory.
-2.  Configure `TARGET_ID` and `GROUP_TYPE` in the script.
-3.  Run the analysis:
-    ```bash
-    python SAIM_Engine_v9_2.py
-    ```
-
-## Citation & Theory
-For the mathematical derivation of NCI and NCI Volatility, please refer to **Supplementary Material S1**.
+This version (**v9.3**) is the **"Reviewer-Proof" Gold Master edition**, specifically engineered to eliminate analyzer bias and ensure statistical robustness for high-impact journal submission.
 
 ---
-*© 2025 TIC-DO Institute of Vertebral Subluxation Research*
+
+## 🚀 Key Features in v9.3
+
+### 1. Bias Neutralization (Equal Weighting)
+Unlike previous versions that allowed manual weight adjustment, v9.3 employs a strict **Equal Weighting Strategy**. The Integration Score is calculated as the mathematical mean of all available functional metrics (`FSI`, `SOM`, `AUT`, `HEMO`), preventing "cherry-picking" of favorable indicators.
+
+### 2. Robust Statistics (Median/MAD)
+To mitigate the impact of physiological artifacts (e.g., sneezing, body movement), all internal normalizations now use **Robust Z-scores** based on the Median and Median Absolute Deviation (MAD), rather than Mean and Standard Deviation.
+> $Z_{robust} = 0.6745 \cdot (x - \text{median}) / \text{MAD}$
+
+### 3. Fail-Safe Baseline Check
+The engine performs a critical pre-flight check. If the baseline data (`01_Pre`) is missing, the analysis **aborts immediately** to prevent the generation of scientifically invalid comparisons.
+
+### 4. Full Data Transparency
+Generates a comprehensive `FullData` CSV containing raw calculated values for every single time window, ensuring complete reproducibility and auditability.
+
+---
+
+## 📊 Calculated Metrics
+
+| Metric | Full Name | Description |
+| :--- | :--- | :--- |
+| **NCI** | Neural Complexity Index | Primary outcome. Global system integrity (0.0-1.0). |
+| **PE** | Prediction Error | Instability of the internal model (EEG Alpha volatility). |
+| **HEMO** | Neurovascular Flexibility | Metabolic resource capacity (fNIRS HbO variance). |
+| **F** | Free Energy Proxy | The cost function the system seeks to minimize. |
+| **FSI** | Frontal Stability Index | EEG Gamma/Delta ratio (Cognitive binding). |
+| **SOM** | Micro-Kinematic Stability | Inverse of body acceleration variance. |
+| **AUT** | Autonomic Flexibility | Shannon entropy of Heart Rate distribution. |
+
+---
+
+## 📦 Installation & Dependencies
+
+Requires **Python 3.8+**. Install dependencies via pip:
+
+```bash
+pip install pandas numpy matplotlib seaborn scipy
